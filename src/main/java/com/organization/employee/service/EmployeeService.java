@@ -8,7 +8,6 @@ import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.organization.employee.entity.DepartmentVO;
 import com.organization.employee.entity.Employee;
 import com.organization.employee.entity.EmployeeVO;
 import com.organization.employee.entity.IDepartment;
@@ -33,7 +32,7 @@ public class EmployeeService {
 			}
 	
 	public List<IDepartment> sumOfDepartmentSalary(){
-		return employeeRepo.departmentSalary();
+		return employeeRepo.sumOfdepartmentSalary();
 		
 		}
 	public List<Employee> filterByDepartmentAndDoj(String department, String str_date){

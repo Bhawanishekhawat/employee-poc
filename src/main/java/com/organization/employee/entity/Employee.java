@@ -14,6 +14,7 @@ import org.hibernate.validator.constraints.Range;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -22,10 +23,15 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table (name = "employee_data")
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Employee {
+	
+	
+	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Long id;
 	@NotNull(message = "{firstName}")
@@ -45,5 +51,19 @@ public class Employee {
 	@DateTimeFormat(pattern="yyyy/mm/dd")
 	@Column(name = "date_Of_Joining")
 	private Date date_Of_joining;
+	
+	
+	public Employee(@NotNull(message = "{firstName}") String first_name,
+			@NotNull(message = "{lastName}") String last_name, @NotNull(message = "{department}") String department,
+			@NotNull(message = "{salary}") @Range(min = 1) Long salary,
+			@NotNull(message = "{dateOfJoining}") Date date_Of_joining) {
+		super();
+		this.first_name = first_name;
+		this.last_name = last_name;
+		this.department = department;
+		this.salary = salary;
+		this.date_Of_joining = date_Of_joining;
+	}
+	
 
 }
